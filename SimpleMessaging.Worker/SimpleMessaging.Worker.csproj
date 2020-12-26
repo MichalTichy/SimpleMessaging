@@ -6,6 +6,11 @@
     <PackageProjectUrl>https://github.com/MichalTichy/SimpleMessaging</PackageProjectUrl>
     <RepositoryUrl>https://github.com/MichalTichy/SimpleMessaging</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
+    <Authors>Michal Tichý</Authors>
+    <Company />
+    <Product>SimpleMessaging</Product>
+    <Description>Basic infrastructure for using messaging pattern</Description>
+    <PackageLicenseExpression>MIT License</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
