@@ -133,17 +133,13 @@ namespace SimpleMessaging.Worker.Worker
 
                 if (Queue.TryGet(out var workItem))
                 {
-                    await ProcessWorkItemAsync(workItem,out var itemToAddToQueue);
-                    if (itemToAddToQueue != null)
-                    {
-                        await AddToQueWithDelay(workItem);
-                    }
+                    await ProcessWorkItemAsync(workItem);
                 }
 
             } while (!(cancellationToken.IsCancellationRequested && CanBeTerminated));
         }
 
-        protected abstract Task ProcessWorkItemAsync(TItem workItem, out TItem workItemToEnqueue);
+        protected abstract Task ProcessWorkItemAsync(TItem workItem);
 
         protected async Task AddToQueWithDelay(TItem model)
         {
