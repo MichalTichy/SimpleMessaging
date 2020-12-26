@@ -11,6 +11,7 @@
     <Product>SimpleMessaging</Product>
     <Description>Basic infrastructure for using messaging pattern</Description>
     <PackageLicenseExpression></PackageLicenseExpression>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

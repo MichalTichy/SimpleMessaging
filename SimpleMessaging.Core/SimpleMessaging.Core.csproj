@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Set of interfaces for basic infrastructure for messaging pattern</Description>
+    <Version>1.0.1</Version>
+    <Authors>Michal Tichý</Authors>
   </PropertyGroup>
 
 </Project>
