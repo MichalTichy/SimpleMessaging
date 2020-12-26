@@ -1,5 +1,5 @@
 ﻿using System.Collections.Concurrent;
-using SimpleMessaging.Core;
+using SimpleMessaging.Base;
 
 namespace SimpleMessaging.Worker.Queue
 {

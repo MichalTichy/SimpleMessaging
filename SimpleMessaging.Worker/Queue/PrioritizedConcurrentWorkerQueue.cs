@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using SimpleMessaging.Core;
+using SimpleMessaging.Base;
 using SimpleMessaging.Worker.Item;
 
 namespace SimpleMessaging.Worker.Queue

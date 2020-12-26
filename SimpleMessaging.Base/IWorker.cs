@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SimpleMessaging.Core
+namespace SimpleMessaging.Base
 {
     public interface IWorker<T>
     {

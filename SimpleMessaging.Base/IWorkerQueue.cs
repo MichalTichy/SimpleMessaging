@@ -1,4 +1,4 @@
-﻿namespace SimpleMessaging.Core
+﻿namespace SimpleMessaging.Base
 {
     public interface IWorkerQueue<T>
     {

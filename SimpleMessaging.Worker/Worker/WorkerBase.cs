@@ -3,11 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Polly.RetryManager;
-using SimpleMessaging.Core;
+using SimpleMessaging.Base;
 
 namespace SimpleMessaging.Worker.Worker
 {
-    public abstract class WorkerBase<TItem,TQueue> : IWorker<TItem> where TQueue : IWorkerQueue<TItem>, new()
+    public abstract class WorkerBase<TItem,TQueue> : IWorker<TItem> where TQueue : IWorkerQueue<TItem> ,new()
     {
         protected virtual WaitStrategy WaitStrategy => WaitStrategy.LinearWait;
         protected virtual TimeSpan DelayForRequeue { get; set; } = TimeSpan.FromSeconds(1);
