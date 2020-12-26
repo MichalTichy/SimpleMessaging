@@ -143,7 +143,7 @@ namespace SimpleMessaging.Worker.Worker
             } while (!(cancellationToken.IsCancellationRequested && CanBeTerminated));
         }
 
-        protected abstract Task<bool> ProcessWorkItemAsync(TItem workItem, out object unknown);
+        protected abstract Task ProcessWorkItemAsync(TItem workItem, out TItem workItemToEnqueue);
 
         protected async Task AddToQueWithDelay(TItem model)
         {
