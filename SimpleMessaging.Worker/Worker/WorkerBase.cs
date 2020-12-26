@@ -2,8 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Polly.RetryManager;
 using SimpleMessaging.Core;
-using SimpleMessaging.RetryManager;
 
 namespace SimpleMessaging.Worker.Worker
 {
@@ -90,7 +90,7 @@ namespace SimpleMessaging.Worker.Worker
                 {
                     WorkerThread = new Thread(async () =>
                     {
-                        var cbPolicy = RetryManager.RetryManager.CircuitBreakerWithRetryAsync<Exception>(
+                        var cbPolicy = RetryManager.CircuitBreakerWithRetryAsync<Exception>(
                             WaitStrategy,
                             (exception, span) => Logger.LogError($"{GetType().Name}: Unhandled exception occured", exception),
                             (exception, span) => Logger.LogCritical($"{GetType().Name}: Circuit breaker tripped.", exception),

@@ -10,16 +10,16 @@
     <Company />
     <Product>SimpleMessaging</Product>
     <Description>Basic infrastructure for using messaging pattern</Description>
-    <PackageLicenseExpression>MIT License</PackageLicenseExpression>
+    <PackageLicenseExpression></PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    <PackageReference Include="RetryManager" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleMessaging.Core\SimpleMessaging.Core.csproj" />
-    <ProjectReference Include="..\SimpleMessaging.RetryManager\SimpleMessaging.RetryManager.csproj" />
   </ItemGroup>
 
 </Project>
