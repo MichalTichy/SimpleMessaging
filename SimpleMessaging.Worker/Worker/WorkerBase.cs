@@ -49,7 +49,7 @@ namespace SimpleMessaging.Worker.Worker
 
         protected Thread WorkerThread;
 
-        public WorkerBase(ILogger logger)
+        public WorkerBase(ILogger logger=null)
         {
             Logger = logger;
         }
@@ -62,11 +62,11 @@ namespace SimpleMessaging.Worker.Worker
         {
             Queue.Add(workItem);
 
-            Logger.LogInformation($"{GetType().Name}: item inserted");
+            Logger?.LogInformation($"{GetType().Name}: item inserted");
 
             if (await GetStatus() == WorkerStatus.Stopped)
             {
-                Logger.LogDebug($"{GetType().Name}: is currently stopped => starting");
+                Logger?.LogDebug($"{GetType().Name}: is currently stopped => starting");
                 await Start();
             }
         }
@@ -83,7 +83,7 @@ namespace SimpleMessaging.Worker.Worker
                     return;
                 }
 
-                Logger.LogDebug($"{GetType().Name}: Started");
+                Logger?.LogDebug($"{GetType().Name}: Started");
 
                 WorkerCancellationTokenSource = new CancellationTokenSource();
                 using (ExecutionContext.SuppressFlow())
@@ -92,9 +92,9 @@ namespace SimpleMessaging.Worker.Worker
                     {
                         var cbPolicy = RetryManager.CircuitBreakerWithRetryAsync<Exception>(
                             WaitStrategy,
-                            (exception, span) => Logger.LogError($"{GetType().Name}: Unhandled exception occured", exception),
-                            (exception, span) => Logger.LogCritical($"{GetType().Name}: Circuit breaker tripped.", exception),
-                            () => Logger.LogInformation($"{GetType().Name}: Circuit breaker restored."));
+                            (exception, span) => Logger?.LogError($"{GetType().Name}: Unhandled exception occured", exception),
+                            (exception, span) => Logger?.LogCritical($"{GetType().Name}: Circuit breaker tripped.", exception),
+                            () => Logger?.LogInformation($"{GetType().Name}: Circuit breaker restored."));
                         await cbPolicy.ExecuteAsync(async () =>
                             await StartWorkItemProcessingAsync(WorkerCancellationTokenSource.Token)
                         );
@@ -117,7 +117,7 @@ namespace SimpleMessaging.Worker.Worker
             WorkerThread?.Join(TerminationTimeout);
 
             await SetStatus(WorkerStatus.Stopped);
-            Logger.LogDebug($"{GetType().Name}: Stopped");
+            Logger?.LogDebug($"{GetType().Name}: Stopped");
         }
 
         protected virtual async Task StartWorkItemProcessingAsync(CancellationToken cancellationToken)
@@ -127,7 +127,7 @@ namespace SimpleMessaging.Worker.Worker
                 if (Queue.IsEmpty())
                 {
                     await SetStatus(WorkerStatus.Stopped);
-                    Logger.LogDebug($"{GetType().Name}: No work items to process, stopping.");
+                    Logger?.LogDebug($"{GetType().Name}: No work items to process, stopping.");
                     break;
                 }
 
