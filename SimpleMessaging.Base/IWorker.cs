@@ -6,7 +6,7 @@ namespace SimpleMessaging.Base
     {
         Task<WorkerStatus> GetStatus();
         Task Add(T workItem);
-        void Start();
+        Task Start();
         Task Stop();
     }
 }

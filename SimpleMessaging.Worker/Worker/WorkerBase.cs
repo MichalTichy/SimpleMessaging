@@ -67,14 +67,14 @@ namespace SimpleMessaging.Worker.Worker
             if (await GetStatus() == WorkerStatus.Stopped)
             {
                 Logger.LogDebug($"{GetType().Name}: is currently stopped => starting");
-                Start();
+                await Start();
             }
         }
 
 
-        public virtual void Start()
+        public virtual async Task Start()
         {
-            WorkStatusSemaphore.WaitAsync();
+            await WorkStatusSemaphore.WaitAsync();
 
             try
             {
